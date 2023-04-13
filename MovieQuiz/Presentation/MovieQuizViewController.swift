@@ -24,6 +24,7 @@ final class MovieQuizViewController: UIViewController,
         questionFactory = QuestionFactory(delegate: self)
         questionFactory?.requestNextQuestion()
     }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -71,6 +72,7 @@ final class MovieQuizViewController: UIViewController,
         yesButton.isEnabled = true
         noButton.isEnabled = true
     }
+    
     private func showAnswerResult(isCorrect: Bool) {
         yesButton.isEnabled = false
         noButton.isEnabled = false
@@ -87,6 +89,7 @@ final class MovieQuizViewController: UIViewController,
             self.noButton.isEnabled = true
         }
     }
+    
     private func showNextQuestionOrResults() {
         if currentQuestionIndex == questionsAmount - 1 {
             statisticService.store(correct: correctAnswers, count: currentQuestionIndex, total: questionsAmount)

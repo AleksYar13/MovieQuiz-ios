@@ -80,6 +80,7 @@ extension StatisticServiceImplementation: StatisticService {
     var totalAccuracy: Double {
         Double(correct) / Double(total) * 100
     }
+    
     func store(correct: Int, count: Int, total: Int) {
         self.correct += correct
         self.total += total

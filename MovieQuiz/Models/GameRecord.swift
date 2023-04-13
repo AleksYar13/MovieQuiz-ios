@@ -5,6 +5,7 @@ struct GameRecord: Codable {
     let total: Int
     let date: Date
 }
+
 extension GameRecord: Comparable {
      private var accuracy: Double {
          guard total != 0 else {
