@@ -1,4 +1,5 @@
 import Foundation
+
 private let question: String = "Рейтинг этого фильма больше чем 6?"
 
 class QuestionFactory: QuestionFactoryProtocol {
