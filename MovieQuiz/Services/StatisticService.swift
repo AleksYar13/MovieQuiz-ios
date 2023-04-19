@@ -36,7 +36,6 @@ extension StatisticServiceImplementation: StatisticService {
                   let record = try? JSONDecoder().decode(GameRecord.self, from: data) else {
                 return .init(correct: 0, total: 0, date: Date())
             }
-            
             return record
         }
         set {
@@ -92,6 +91,5 @@ extension StatisticServiceImplementation: StatisticService {
             bestGame = currentGameRecord
         }
     }
-    
 }
 

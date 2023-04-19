@@ -1,13 +1,18 @@
 import UIKit
 
 final class MovieQuizViewController: UIViewController,
-                                     QuestionFactoryDelegate {
+                                     QuestionFactoryDelegate, AlertPresenterDelegate {
+  
+    // MARK: - Outlets
     
-    @IBOutlet private var counterLabel: UILabel!
-    @IBOutlet private var imageView: UIImageView!
-    @IBOutlet private var textLabel: UILabel!
-    @IBOutlet private var yesButton: UIButton!
-    @IBOutlet private var noButton: UIButton!
+    @IBOutlet weak private var counterLabel: UILabel!
+    @IBOutlet weak private var imageView: UIImageView!
+    @IBOutlet weak private var textLabel: UILabel!
+    @IBOutlet weak private var yesButton: UIButton!
+    @IBOutlet weak private var noButton: UIButton!
+    @IBOutlet weak private var activityIndicator: UIActivityIndicatorView!
+    
+    // MARK: - Private Variables & Constants
     
     private var currentQuestionIndex: Int = 0
     private var correctAnswers: Int = 0
@@ -15,14 +20,22 @@ final class MovieQuizViewController: UIViewController,
     private var questionFactory: QuestionFactoryProtocol?
     private var currentQuestion: QuizQuestion?
     private var statisticService = StatisticServiceImplementation()
+    private var alertPresenter: AlertPresenter?
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = 20
         
-        questionFactory = QuestionFactory(delegate: self)
-        questionFactory?.requestNextQuestion()
+        questionFactory = QuestionFactory(moviesLoader: MoviesLoader(), delegate: self)
+        statisticService = StatisticServiceImplementation()
+        
+        showLoadingIndicator()
+        questionFactory?.loadData()
+        
+        alertPresenter = AlertPresenter(viewController: self)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -44,7 +57,7 @@ final class MovieQuizViewController: UIViewController,
     
     private func convert(model: QuizQuestion) -> QuizStepViewModel {
         return QuizStepViewModel(
-            image: UIImage(named: model.image) ?? UIImage(),
+            image: UIImage(data: model.image) ?? UIImage(),
             question: model.text,
             questionNumber: "\(currentQuestionIndex + 1)/\(questionsAmount)")
     }
@@ -115,9 +128,9 @@ final class MovieQuizViewController: UIViewController,
     }
     // фунцкия показа след шага-вопроса
     private func show (quiz result: QuizResultsViewModel) {
-        let alertViewModel = AlertModel(title: result.title,
+        let alertModel = AlertModel(title: result.title,
                                         message: result.text,
-                                        buttontext: result.buttonText,
+                                        buttonText: result.buttonText,
                                         completion: { [weak self] _ in
             guard let self = self else { return }
             self.currentQuestionIndex = 0
@@ -125,7 +138,49 @@ final class MovieQuizViewController: UIViewController,
             self.questionFactory?.requestNextQuestion()
         })
         
-        let alert = AlertPresenter()
-        alert.present(view: self, alert: alertViewModel)
+        
+        alertPresenter?.show(alertModel: alertModel)
     }
+    
+    private func showLoadingIndicator() {
+        activityIndicator.isHidden = false // говорим, что индикатор загрузки не скрыт
+        activityIndicator.startAnimating() // включаем анимацию
+    }
+    
+    private func hideLoadingIndicator() {
+        activityIndicator.isHidden = true
+    }
+    
+    private func showNetworkError(message: String) {
+        hideLoadingIndicator()   // скрываем индикатор загрузки
+        
+        let model = AlertModel(title: "Ошибка",
+                               message: message,
+                               buttonText: "Попробовать еще раз") { [weak self] _ in
+            guard let self = self else { return }
+            
+            self.currentQuestionIndex = 0
+            self.correctAnswers = 0
+            
+            self.questionFactory?.requestNextQuestion()
+        }
+        
+        alertPresenter?.show(alertModel: model)
+    }
+    
+    func didFailToLoadData(with error: Error) {
+        showNetworkError(message: error.localizedDescription) // возьмём в качестве сообщения описание ошибки
+    }
+    
+    func didLoadDataFromServer() {
+        activityIndicator.isHidden = true // скрываем индикатор загрузки
+        questionFactory?.requestNextQuestion()
+    }
+    
+    func didFailToLoadImage() {
+         let alert = AlertModel(title: "Ошибка", message: "Изображение не загрузилось", buttonText: "Попробуйте еще раз") { [ weak self ] _ in
+             self?.questionFactory?.requestNextQuestion()
+         }
+         alertPresenter?.show(alertModel: alert)
+     }
 }
