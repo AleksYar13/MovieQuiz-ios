@@ -48,7 +48,7 @@ final class MovieQuizUITests: XCTestCase {
         
         let indexLabel = app.staticTexts["Index"]
         
-        XCTAssertFalse(firstPoster == secondPoster) // проверяем, что постеры разные
+        XCTAssertFalse(firstPosterData == secondPosterData) // проверяем, что постеры разные
         XCTAssertEqual(indexLabel.label, "2/10")
     }
     
@@ -66,14 +66,14 @@ final class MovieQuizUITests: XCTestCase {
         
         let indexLabel = app.staticTexts["Index"]
         
-        XCTAssertFalse(firstPoster == secondPoster) // проверяем, что постеры разные
+        XCTAssertFalse(firstPosterData == secondPosterData) // проверяем, что постеры разные
         XCTAssertEqual(indexLabel.label, "2/10")
     }
     
     func testGameFinish() {
         sleep(2)
         for _ in 1...10 {
-            app.buttons["No"].tap()
+            app.buttons["Yes"].tap()
             sleep(2)
         }
 

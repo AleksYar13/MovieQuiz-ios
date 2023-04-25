@@ -32,7 +32,7 @@
 		EFFFB10829EEBB8700E8FB62 /* MostPopularMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFFB10729EEBB8700E8FB62 /* MostPopularMovies.swift */; };
 		EFFFB10A29EEBBE400E8FB62 /* MoviesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFFB10929EEBBE400E8FB62 /* MoviesLoader.swift */; };
 		EFFFB10E29EFEAAA00E8FB62 /* AlertPresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFFB10D29EFEAAA00E8FB62 /* AlertPresenterDelegate.swift */; };
-		EFFFB14929F2AB2A00E8FB62 /* ArrayTests.swift in Resources */ = {isa = PBXBuildFile; fileRef = EFFFB14829F2AB2A00E8FB62 /* ArrayTests.swift */; };
+		EFFFB14929F2AB2A00E8FB62 /* ArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFFB14829F2AB2A00E8FB62 /* ArrayTests.swift */; };
 		EFFFB14B29F552E200E8FB62 /* MoviesLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFFB14A29F552E200E8FB62 /* MoviesLoaderTests.swift */; };
 		EFFFB16029F55AC000E8FB62 /* MovieQuizUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFFB15F29F55AC000E8FB62 /* MovieQuizUITests.swift */; };
 		EFFFB16929F6AB1800E8FB62 /* MovieQuizPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFFB16829F6AB1800E8FB62 /* MovieQuizPresenter.swift */; };
@@ -395,7 +395,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EFFFB14929F2AB2A00E8FB62 /* ArrayTests.swift in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,6 +448,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFFFB14B29F552E200E8FB62 /* MoviesLoaderTests.swift in Sources */,
+				EFFFB14929F2AB2A00E8FB62 /* ArrayTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
