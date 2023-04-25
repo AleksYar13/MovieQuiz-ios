@@ -53,55 +53,55 @@ final class QuestionFactory: QuestionFactoryProtocol {
             
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
-                self.delegate?.didReceiveNextQuestion(question: question)
+                self.delegate?.didRecieveNextQuestion(question: question)
             }
         }
     }
 }
 
-/*
- let question = "Рейтинг этого фильма болье 7?"
- 
- private let questions: [QuizQuestion] = [
-    QuizQuestion(
-        image: "The Godfather",
-        text: question,
-        correctAnswer: true),
-    QuizQuestion(
-        image: "The Dark Knight",
-        text: question,
-        correctAnswer: true),
-    QuizQuestion(
-        image: "Kill Bill",
-        text: question,
-        correctAnswer: true),
-    QuizQuestion(
-        image: "The Avengers",
-        text: question,
-        correctAnswer: true),
-    QuizQuestion(
-        image: "Deadpool",
-        text: question,
-        correctAnswer: true),
-    QuizQuestion(
-        image: "The Green Knight",
-        text: question,
-        correctAnswer: true),
-    QuizQuestion(
-        image: "Old",
-        text: question,
-        correctAnswer: false),
-    QuizQuestion(
-        image: "The Ice Age Adventures of Buck Wild",
-        text: question,
-        correctAnswer: false),
-    QuizQuestion(
-        image: "Tesla",
-        text: question,
-        correctAnswer: false),
-    QuizQuestion(
-        image: "Vivarium",
-        text: question,
-        correctAnswer: false)
-]
- */
+
+// let question = "Рейтинг этого фильма болье 7?"
+//
+// private let questions: [QuizQuestion] = [
+//    QuizQuestion(
+//        image: "The Godfather",
+//        text: question,
+//        correctAnswer: true),
+//    QuizQuestion(
+//        image: "The Dark Knight",
+//        text: question,
+//        correctAnswer: true),
+//    QuizQuestion(
+//        image: "Kill Bill",
+//        text: question,
+//        correctAnswer: true),
+//    QuizQuestion(
+//        image: "The Avengers",
+//        text: question,
+//        correctAnswer: true),
+//    QuizQuestion(
+//        image: "Deadpool",
+//        text: question,
+//        correctAnswer: true),
+//    QuizQuestion(
+//        image: "The Green Knight",
+//        text: question,
+//        correctAnswer: true),
+//    QuizQuestion(
+//        image: "Old",
+//        text: question,
+//        correctAnswer: false),
+//    QuizQuestion(
+//        image: "The Ice Age Adventures of Buck Wild",
+//        text: question,
+//        correctAnswer: false),
+//    QuizQuestion(
+//        image: "Tesla",
+//        text: question,
+//        correctAnswer: false),
+//    QuizQuestion(
+//        image: "Vivarium",
+//        text: question,
+//        correctAnswer: false)
+//]
+//

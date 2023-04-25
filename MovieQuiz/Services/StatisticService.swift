@@ -6,6 +6,8 @@ protocol StatisticService {
     var bestGame: GameRecord { get }
     var total: Int { get set }
     
+    func store(correct: Int, count: Int, total: Int)
+    
 }
 
 final class StatisticServiceImplementation {
